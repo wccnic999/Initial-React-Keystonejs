@@ -1,0 +1,10 @@
+extends ../layouts/default
+
+block css
+  style!= react_css
+
+block content
+  #App
+block js
+  script!= react_js
+  script(src=`${BUNDLE_PATH}/home.js` async)

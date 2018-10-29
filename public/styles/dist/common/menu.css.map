@@ -1,0 +1,1 @@
+{"version":3,"file":"menu.css","sources":["common/menu.scss"],"sourcesContent":["#main-menu{\n    a{\n        display: block\n    }    \n  }"],"names":[],"mappings":"AAAA,AACI,UADM,CACN,CAAC,AAAA,CACG,OAAO,CAAE,KACb,CAAC","sourceRoot":"../../src"}
