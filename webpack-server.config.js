@@ -9,7 +9,7 @@ const output = {
     libraryTarget: "commonjs2"
   },
   production: {
-    path: path.resolve(__dirname, './routes/redux-render'),
+    path: path.resolve(__dirname, './public/js/dist'),
     filename: '[name].js',
     libraryTarget: "commonjs2"
   }
@@ -23,7 +23,7 @@ const entry = {
     'render': './routes/redux-render/src/render.jsx',
   },
   production: {
-    'render': './routes/redux-render/src/render.jsx',
+    home: './public/js/src/home.js',
   }
 }
 const plugins = {
@@ -41,25 +41,43 @@ module.exports = {
   devtool: devtool[env_key],
   plugins: plugins[env_key],
   module: {
+    loaders: [
+      {
+      test: /\.js$/,
+      loader: 'babel-loader',
+      query: {
+          presets: ['es2015'],
+          plugins: ["babel-plugin-transform-class-properties"]
+      }
+    },
+    {
+      test: /\.scss$/,
+      loaders: ['style-loader', 'css-loader', 'sass-loader']
+      // 
+    }],
     rules: [
       {
-        test: /\.jsx?$/,
-        exclude: /(node_modules|bower_components)/,
-        loader: "babel-loader",
-        options: {
-					presets: [
-						'es2015',
-            'react',
-            'stage-2'
-					]
-				},
+          test: /\.scss$/,
+          loaders: ['style-loader', 'css-loader', 'sass-loader']
+          // 'style-loader!css-loader?modules!sass-loader'
       },
       {
-          test: /\.scss$/,
-          loaders: ['css-loader', 'sass-loader']
-      }
+        test: /\.js$/,
+        exclude: /(node_modules|bower_components)/,
+        loader: "babel-loader",
+      },
     ]
-  }
+  },
+  resolve: {
+    alias:{
+      styles_path: path.resolve(__dirname, 'public','styles','src'),
+    },
+    extensions: ['.js', '.jsx', '.json', '.scss'],
+    modules: [
+      path.resolve(__dirname, 'public/js/src'),
+        'node_modules'
+    ]
+  },
 };
 
 

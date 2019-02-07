@@ -20,6 +20,7 @@ const devtool = {
 const entry = {
   development: {
     home: [
+      'babel-polyfill',
       'react-hot-loader/patch',
       // Add the client which connects to our middleware
       // You can use full urls like 'webpack-hot-middleware/client?path=http://localhost:3000/__webpack_hmr'
@@ -53,29 +54,46 @@ const plugins = {
 const env_key = process.env.NODE_ENV === 'development' ? 'development' : 'production'
 
 module.exports = {
+  name: 'app',
+  resolve: {
+    alias:{
+      styles_path: path.resolve(__dirname, 'public','styles','src'),
+    },
+    extensions: ['.js', '.jsx', '.json', '.scss'],
+    modules: [
+      path.resolve(__dirname, 'public/js/src'),
+        'node_modules'
+    ]
+  },
   context: __dirname,
   entry:   entry[env_key],
   output:  output[env_key],
   devtool: devtool[env_key],
   plugins: plugins[env_key],
   module: {
+    loaders: [
+      {
+      test: /\.js$/,
+      loader: 'babel-loader',
+      query: {
+          presets: ['es2015'],
+          plugins: ["babel-plugin-transform-class-properties"]
+      }
+    },
+    {
+      test: /\.scss$/,
+      loaders: ["style", "css", "sass"]
+    }],
     rules: [
+      {
+          test: /\.scss$/,
+          loaders: ['style-loader', 'css-loader', 'sass-loader']
+      },
       {
         test: /\.js$/,
         exclude: /(node_modules|bower_components)/,
         loader: "babel-loader",
-        options: {
-					presets: [
-						'es2015',
-            'react',
-            'stage-2'
-					]
-				},
       },
-      {
-          test: /\.scss$/,
-          loaders: ['style-loader', 'css-loader', 'sass-loader']
-      }
     ]
   }
 };

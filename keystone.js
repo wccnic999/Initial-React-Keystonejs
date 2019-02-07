@@ -29,7 +29,7 @@ require('dotenv').config({
 	  'auth': true,
 	  'user model': 'User',
 	'cookie secret': process.env.COOKIE_SECRET || 'SOjsda823thpp9asv89ahfiag8r79aenpg',
-	  'mongo': process.env.MONGO_URI || "mongodb://localhost/react-redux-keystone-boilerplate",
+	  'mongo': process.env.MONGO_URI || "mongodb://localhost/react-keystonejs",
 	'auto update': process.env.TESTING !== 'true'
   });
   
