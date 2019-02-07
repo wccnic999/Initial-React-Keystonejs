@@ -5,7 +5,7 @@ import { renderToString } from 'react-dom/server'
 import { createStore, applyMiddleware, compose } from 'redux'
 import { Provider } from 'react-redux'
 import { StaticRouter as Router, Route, Switch, Link } from 'react-router-dom'
-import reducer from '../../../public/js/src/reducers'
+import reducer from 'reducers'
 import thunk from 'redux-thunk'
 
 import App from '../../../public/js/src/containers/App'
