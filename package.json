@@ -63,6 +63,7 @@
     "lint": "eslint .",
     "start": "node keystone.js",
     "build": "NODE_ENV=production ./node_modules/webpack/bin/webpack.js --config webpack.config.js && ./node_modules/webpack/bin/webpack.js --config webpack-server.config.js",
+    "start:prod": "NODE_ENV=production USE_KEYSTONE_SERVER=true node keystone.js",
     "serve:prod": "npm run build && NODE_ENV=production USE_KEYSTONE_SERVER=true node keystone.js",
     "dev": "NODE_ENV=development USE_KEYSTONE_SERVER=true gulp",
     "test": "USE_KEYSTONE_SERVER=false TESTING=true ./node_modules/.bin/mocha ./tests/main.test.js --exit"
